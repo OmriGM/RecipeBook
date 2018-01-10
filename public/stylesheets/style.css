@@ -1,27 +1,40 @@
+<<<<<<< Updated upstream
 /* body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
+=======
+/*body {*/
+  /*padding: 50px;*/
+  /*font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;*/
+/*}*/
+>>>>>>> Stashed changes
 
-a {
-  color: #00B7FF;
-  cursor: pointer;
-}
+/*a {*/
+  /*color: #00B7FF;*/
+  /*cursor: pointer;*/
+/*}*/
 
-a:hover,
-a:active {
-  color: #00B7FF;
-  text-decoration: underline;
-}
+/*a:hover,*/
+/*a:active {*/
+  /*color: #00B7FF;*/
+  /*text-decoration: underline;*/
+/*}*/
 
-a.danger {
-  color: red;
-}
+/*a.danger {*/
+  /*color: red;*/
+/*}*/
 
-.spacing {
-  margin-bottom: 20px;
-}
+/*.spacing {*/
+  /*margin-bottom: 20px;*/
+/*}*/
 
+<<<<<<< Updated upstream
 input.ng-invalid.ng-touched {
   border: 1px solid red;
 } */
+=======
+/*input.ng-invalid.ng-touched {*/
+  /*border: 1px solid red;*/
+/*}*/
+>>>>>>> Stashed changes
