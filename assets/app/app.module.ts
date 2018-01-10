@@ -1,3 +1,4 @@
+import { StoresModule } from './stores/stores.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
@@ -21,7 +22,8 @@ import {CoreModule} from './core/core.module';
     SharedModule,
     ShoppingListModule,
     AuthModule,
-    CoreModule
+    CoreModule,
+    StoresModule
   ],
   bootstrap: [AppComponent]
 

@@ -7,15 +7,17 @@ var Recipe = require("../models/recipe");
 router.get('/', function (req, res, next) {
     Recipe.find(function (err, recipes) {
         if (err) {
-            res.status.json({
+            return res.status().json({
                 title: 'recipes not found',
                 error: err
             });
         }
-        res.status.json({
-            title: 'all recipes',
-            obj: recipes
-        });
+        else {
+            res.status().json({
+                title: 'all recipes',
+                obj: recipes
+            });
+        }
     });
 })
 
@@ -29,7 +31,7 @@ router.post('/', function (req, res, next) {
         ingredients: req.body.ingredients
     })
     recipe.save(function (err, result) {
-        res.status.json({
+        res.status().json({
             title: 'recipe saved',
             obj: result
         });
@@ -39,12 +41,69 @@ router.post('/', function (req, res, next) {
 
 //TODO:
 //delete recipe
-router.delete('/:id',function(req,res){
+router.delete('/:id', function (req, res) {
+    var recipeId = req.params.id;
+    Recipe.findById(recipeId, function (err, recipe) {
+        if (err) {
+            return res.status(500).json({
+                title: 'an error occureed',
+                error: err
+            })
+        }
+        if (!recipe) {
+            return res.status().json({
+                title: 'recipe not found',
+            });
+        }
 
+        recipe.remove(function (err, result) {
+            if (err) {
+                return res.status(500).json({
+                    title: 'An error occurred',
+                    error: err
+                });
+            }
+            res.status(200).json({
+                message: 'recipe deleted',
+                obj: result
+            });
+        })
+    });
 })
 
-//put modified recipe in data base
-router.put('/:id',function(res,req){
-    
+//save modified recipe in data base
+router.patch('/:id', function (res, req) {
+    var recipeId = req.params.id;
+    Recipe.findById(recipeId, function (err, recipe) {
+        if (err) {
+            return res.status(500).json({
+                title: 'an error occureed',
+                error: err
+            })
+        }
+        if (!recipe) {
+            return res.status(500).json({
+                title: 'recipe not found',
+            });
+        }
+        recipe.name = req.body.name;
+        recipe.description = req.body.description;
+        recipe.imagePath = req.body.imagePath;
+        recipe.catagory = req.body.catagory;
+        recipe.ingredients = req.body.ingredients;
+
+        recipe.save(function (err, result) {
+            if (err) {
+                return res.status(500).json({
+                    title: 'An error occurred',
+                    error: err
+                });
+            }
+            res.status(200).json({
+                message: 'recipe changed',
+                obj: result
+            });
+        })
+    });
 })
 module.exports = router;
