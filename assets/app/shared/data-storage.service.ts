@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import {Recipe} from '../recipes/recipe.model';
 import {Http} from '@angular/http';
-import {AuthService} from '../auth/auth.service';
 import {isUndefined} from 'util';
 import 'rxjs/add/operator/map';
 
@@ -11,8 +10,7 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class DataStorageService {
 
-  constructor(private http: Http,
-              private authService: AuthService) { }
+  constructor(private http: Http) { }
 
   storeAddionalRecipe(recipe: Recipe) {
     //this.http.post('https://udemy-ng-http-e8223.firebaseio.com/recipes.json', recipe);

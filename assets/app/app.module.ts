@@ -7,13 +7,15 @@ import { AppComponent } from './app.component';
 import {AppRoutingModule} from './app-routing.module';
 import {SharedModule} from './shared/shared.module';
 import {ShoppingListModule} from './shopping-list/shopping-list.module';
-import {AuthModule} from './auth/auth.module';
 import {CoreModule} from './core/core.module';
+import {ChartsModule} from 'ng2-charts';
+import {StatsComponent} from './statistics/stats.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    StatsComponent
   ],
   imports: [
     BrowserModule,
@@ -21,9 +23,9 @@ import {CoreModule} from './core/core.module';
     AppRoutingModule,
     SharedModule,
     ShoppingListModule,
-    AuthModule,
     CoreModule,
-    StoresModule
+    StoresModule,
+    ChartsModule
   ],
   bootstrap: [AppComponent]
 
