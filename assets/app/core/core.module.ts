@@ -4,7 +4,6 @@ import {HomeComponent} from './home/home.component';
 import {SharedModule} from '../shared/shared.module';
 import {AppRoutingModule} from '../app-routing.module';
 import {DataStorageService} from '../shared/data-storage.service';
-import {AuthService} from '../auth/auth.service';
 import {RecipeService} from '../shared/recipe.service';
 import {ShoppingListService} from '../shared/shoppingList.service';
 import {FooterComponent} from "./footer/footer.component";
@@ -24,6 +23,6 @@ import {FooterComponent} from "./footer/footer.component";
     HeaderComponent,
     FooterComponent
   ],
-  providers: [ShoppingListService, RecipeService, AuthService, DataStorageService]
+  providers: [ShoppingListService, RecipeService, DataStorageService]
 })
 export class CoreModule {}

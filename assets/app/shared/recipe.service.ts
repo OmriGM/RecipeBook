@@ -5,7 +5,6 @@ import {Subject} from 'rxjs/Subject';
 import {DataStorageService} from './data-storage.service';
 import {Subscription} from 'rxjs/Subscription';
 import {isUndefined} from 'util';
-import {AuthService} from '../auth/auth.service';
 
 @Injectable()
 export class RecipeService implements OnInit, OnDestroy {
@@ -28,7 +27,7 @@ export class RecipeService implements OnInit, OnDestroy {
           },
           (error) => {
             if (error.status === 401) {
-              this.authService.deleteToken();
+
               return null;
             }
           }
@@ -65,8 +64,7 @@ export class RecipeService implements OnInit, OnDestroy {
   }
 
   constructor(private slService: ShoppingListService,
-              private dataService: DataStorageService,
-              private authService: AuthService) {
+              private dataService: DataStorageService) {
   }
 
   ngOnInit() {
