@@ -16,11 +16,19 @@ export class StatsComponent {
     public barChartOptions:any = {
         scaleShowVerticalLines: false,
         responsive: true,
-        maintainAspectRatio: false
+        maintainAspectRatio: false,
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                    
+                }
+            }]
+        }
     };
     public barChartLabels:string[] = ['Rishon', 'Nes Ziona', 'TLV', 'Moshe', 'Ma?', 'ok', 'bye'];
     public barChartType:string = 'bar';
-    public barChartLegend:boolean = false;
+    public barChartLegend:boolean = false
 
     public barChartData:any[] = [
         {data: [2, 4, 2, 3, 5, 1, 2], label: 'Series A'}
