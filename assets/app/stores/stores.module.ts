@@ -17,7 +17,7 @@ import { StoresService } from './stores.service';
     FormsModule,
     ReactiveFormsModule,
     AgmCoreModule.forRoot({
-      apiKey: "YOUR KEY GOES HERE",
+      apiKey: "AIzaSyCHWNsm3xN5s3wh9PhjA80rG824DIKlGAw",
       libraries: ["places"]
     }),
   ],
