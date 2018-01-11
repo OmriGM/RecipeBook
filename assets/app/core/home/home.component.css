@@ -1,0 +1,38 @@
+body {
+    margin: 0;
+    background: #000;
+}
+
+.side-box {
+    position: absolute;
+    height: 500px;
+    width: 390px;
+    background-color: #555555;
+    opacity: 0.5;
+}
+.on-top {
+    position: relative;
+}
+
+.col-md-4 {
+    text-align: center;
+}
+
+label {
+    position: relative;
+    top: 4.7em;
+    color: #000;
+}
+video {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -100;
+    transform: translateX(-50%) translateY(-50%);
+    background-size: cover;
+    transition: 1s opacity;
+}
