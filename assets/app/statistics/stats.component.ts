@@ -21,7 +21,7 @@ export class StatsComponent {
             yAxes: [{
                 ticks: {
                     beginAtZero: true
-                    
+
                 }
             }]
         }

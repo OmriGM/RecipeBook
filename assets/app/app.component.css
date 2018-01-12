@@ -1,0 +1,7 @@
+.wrapper {
+    min-height: calc(100% - 72px);
+    position: absolute;
+    width: 100%;
+    padding: 55px;
+    padding-bottom: 135px;
+}
