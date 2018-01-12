@@ -10,7 +10,7 @@ export class StoresService {
     constructor(public http: Http) { }
 
     getStores() {
-        return this.http.get('http://localhost:3000/stores')
+        return this.http.get('http://localhost:3000/storeslist')
             .map((response: Response) => {
                 const stores = response.json().obj;
                 let transformedStrores: Store[] = [];

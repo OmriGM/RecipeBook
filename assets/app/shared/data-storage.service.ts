@@ -1,8 +1,10 @@
+import { Recipe } from './../recipes/recipe.model';
 import { Injectable } from '@angular/core';
-import {Recipe} from '../recipes/recipe.model';
-import {Http} from '@angular/http';
-import {isUndefined} from 'util';
+import { Recipe } from '../recipes/recipe.model';
+import { Http } from '@angular/http';
+import { isUndefined } from 'util';
 import 'rxjs/add/operator/map';
+import { Response } from '@angular/http/src/static_response';
 
 
 
@@ -13,7 +15,7 @@ export class DataStorageService {
   constructor(private http: Http) { }
 
   storeAddionalRecipe(recipe: Recipe) {
-    //this.http.post('https://udemy-ng-http-e8223.firebaseio.com/recipes.json', recipe);
+    this.http.post('http://localhost:3000/recipeslist', recipe);
   }
 
   // getAllRecipes() {

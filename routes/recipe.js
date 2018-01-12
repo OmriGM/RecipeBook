@@ -30,6 +30,7 @@ router.post('/', function (req, res, next) {
         catagory: req.body.catagory,
         ingredients: req.body.ingredients
     })
+    console.log("saving recipe");
     recipe.save(function (err, result) {
         res.status().json({
             title: 'recipe saved',
