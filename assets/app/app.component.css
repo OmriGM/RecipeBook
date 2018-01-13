@@ -1,7 +1,11 @@
 .wrapper {
-    min-height: calc(100% - 72px);
-    position: absolute;
-    width: 100%;
-    padding: 55px;
-    padding-bottom: 135px;
+     /*height: calc(100% - 192px);*/
+     min-height: calc(100% - 192px);
+     width: 100%;
+    border: 10px;
+    padding: 20px;
+ }
+
+footer {
+    float: bottom;
 }
