@@ -57,7 +57,24 @@ aside {
     height: 700px;
     width: 220px;
     background-color: whitesmoke;
-    top: 100px;
+    top: 60px;
     right: 10px;
     position: fixed;
+    opacity: 0.8;
+}
+
+h2 {
+    text-shadow: 2px 2px 5px #bbbb;
+    font-family: myFont;
+}
+
+@font-face {
+    font-family: myFont;
+    src: url('/assets/fonts/webfonts/ostrich-sans-dashed.woff');
+
+    src: url('/assets/fonts/webfonts/ostrich-sans-black.eot'); /* IE9 Compat Modes */
+    src: url('/assets/fonts/webfonts/ostrich-sans-black.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('/assets/fonts/webfonts/ostrich-sans-black.svg#Durant-Bold') format('svg'), /* Legacy iOS */
+    url('/assets/fonts/webfonts/ostrich-sans-black.ttf')  format('truetype'), /* Safari, Android, iOS */
+    url('/assets/fonts/webfonts/ostrich-sans-black.woff') format('woff');
 }
