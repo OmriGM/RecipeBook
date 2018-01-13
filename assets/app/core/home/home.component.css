@@ -3,13 +3,27 @@ body {
     background: #000;
 }
 
-.side-box {
+.center-box {
     position: absolute;
     height: 500px;
-    width: 390px;
+    width: 360px;
     background-color: #555555;
     opacity: 0.5;
+    text-align: center;
 }
+
+@media (max-width: 1200px) {
+    .center-box {
+        width: 293.328px;
+    }
+}
+
+@media (max-width: 991px) {
+    .center-box {
+        width: 220px;
+    }
+}
+
 .on-top {
     position: relative;
 }
@@ -38,3 +52,12 @@ video {
 }
 
 
+aside {
+    display: block;
+    height: 700px;
+    width: 220px;
+    background-color: whitesmoke;
+    top: 100px;
+    right: 10px;
+    position: fixed;
+}
