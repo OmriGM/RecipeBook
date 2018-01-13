@@ -30,7 +30,7 @@ router.get('/group', function (req, res, next) {
                 })
             }
             res.status(201).json({
-                title: 'stores group by',
+                title: 'stores group by cities.',
                 obj: result
             });
         });
