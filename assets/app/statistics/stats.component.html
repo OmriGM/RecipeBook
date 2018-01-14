@@ -3,6 +3,7 @@
         <div class="col-md-6">
             <div style="display: block">
                 <canvas baseChart
+                        #pieChart
                         [data]="pieChartData"
                         [labels]="pieChartLabels"
                         [chartType]="pieChartType"
@@ -13,6 +14,7 @@
         <div class="col-md-6">
             <div style="display: block">
                 <canvas baseChart
+                        #barChart
                         [datasets]="barChartData"
                         [labels]="barChartLabels"
                         [options]="barChartOptions"

@@ -2,7 +2,7 @@ import { Recipe } from './../recipes/recipe.model';
 import { Injectable } from '@angular/core';
 import { Http, Headers, Response } from '@angular/http';
 import { ShoppingListService } from './shoppingList.service';
-import { Observable } from "rxjs";
+
 import 'rxjs/Rx';
 
 @Injectable()
@@ -25,6 +25,21 @@ export class Recipe2Service {
                 this.recipeList = transformedRecipes;
                 return transformedRecipes;
             })
+    }
+
+    getGroupByCatagory() {
+        return this.http.get('http://localhost:3000/recipeslist/group')
+            .map(
+                (respone: Response) => {
+                    const groups = respone.json().obj;
+                    let counter: number[] = [];
+                    let names: string[] = [];
+                    for (let g of groups) {
+                        counter.push(g.count);
+                        names.push(g._id);
+                    }
+                    return {names: names, counts: counter};
+                })
     }
 
     addRecipe(recipe: Recipe) {

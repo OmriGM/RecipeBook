@@ -1,23 +1,26 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {StoresService} from '../stores/stores.service';
 import {Subscription} from "rxjs/Subscription";
 import {StoreGroup} from "../stores/storeGroupBy.model";
 import {BaseChartDirective} from "ng2-charts";
+import {Recipe2Service} from "../shared/recipe2.service";
 
 @Component({
     selector: 'app-stats',
     templateUrl: './stats.component.html',
     styleUrls: ['./stats.component.css']
 })
-export class StatsComponent implements OnInit{
+export class StatsComponent implements OnInit, OnDestroy{
+
 
 
     //Pie params
-    public pieChartLabels:string[] = ['Meat', 'Milk', 'Sea food'];
-    public pieChartData:number[] = [300, 500, 100];
+    public pieChartLabels:string[] = [];
+    public pieChartData:number[] = [];
     public pieChartType:string = 'pie';
     public stores: StoreGroup[];
-    public storeSubscribe: Subscription;
+    public recipeSubscribe: Subscription;
+    @ViewChild('pieChart') pieChart: BaseChartDirective;
 
     //Graph params
     public barChartOptions:any = {
@@ -32,12 +35,12 @@ export class StatsComponent implements OnInit{
             }]
         }
     };
+    public storeSubscribe: Subscription;
+    @ViewChild('barChart') barChart: BaseChartDirective;
 
-    @ViewChild(BaseChartDirective) chart: BaseChartDirective;
-
-    public barChartLabels:string[] =  ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'];
+    public barChartLabels:string[] =  [];
     public barChartType:string = 'bar';
-    public barChartLegend:boolean = false
+    public barChartLegend:boolean = false;
 
     public barChartData:any[] = [
         {   label: 'Cities count',
@@ -57,14 +60,40 @@ export class StatsComponent implements OnInit{
                setTimeout(() => {
                    this.barChartLabels = object.storesNames;
 
-                   if (this.chart && this.chart.chart && this.chart.chart.config) {
-                       this.chart.chart.config.data.labels = this.barChartLabels;
-                       this.chart.chart.update();
+                   if (this.barChart && this.barChart.chart && this.barChart.chart.config) {
+                       this.barChart.chart.config.data.labels = this.barChartLabels;
+                       this.barChart.chart.update();
                    }
                });
            }
        );
+
+
+        this.recipeSubscribe = this.recipeService.getGroupByCatagory().subscribe((object) => {
+
+            this.pieChartData = object.counts;
+
+            setTimeout(()=>
+                {
+                    this.pieChartLabels = object.names;
+                    if (this.pieChart && this.pieChart.chart && this.pieChart.chart.config) {
+                        this.pieChart.chart.config.data.labels = this.pieChartLabels;
+                        this.pieChart.chart.update();
+                    }
+                }
+            );
+
+        });
+
+
     }
+
+
+    ngOnDestroy(): void {
+        throw new Error("Method not implemented.");
+    }
+
+
     // events
     public chartClicked(e:any):void {
 
@@ -74,5 +103,5 @@ export class StatsComponent implements OnInit{
 
     }
 
-    constructor(public storesService: StoresService) {}
+    constructor(public storesService: StoresService, public recipeService: Recipe2Service) {}
 }
