@@ -90,7 +90,8 @@ export class StatsComponent implements OnInit, OnDestroy{
 
 
     ngOnDestroy(): void {
-        throw new Error("Method not implemented.");
+        this.recipeSubscribe.unsubscribe();
+        this.storeSubscribe.unsubscribe();
     }
 
 
