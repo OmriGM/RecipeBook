@@ -6,8 +6,9 @@ var schema = new Schema({
     description: { type: String },
     imagePath: { type: String },
     catagory: { type: String },
-    ingredients: [{ type: Schema.Types.ObjectId, ref: 'Ingredient' }]
+    ingredients: [{ name:{type:String},
+                    amount:{type:Number},                    
+    }]
 });
-
 
 module.exports = mongoose.model('Recipe', schema);

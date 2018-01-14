@@ -1,10 +1,11 @@
-import {Recipe} from '../recipes/recipe.model';
-import {Injectable, OnDestroy, OnInit} from '@angular/core';
-import {ShoppingListService} from './shoppingList.service';
-import {Subject} from 'rxjs/Subject';
-import {DataStorageService} from './data-storage.service';
-import {Subscription} from 'rxjs/Subscription';
-import {isUndefined} from 'util';
+import { Http } from '@angular/http';
+import { Recipe } from '../recipes/recipe.model';
+import { Injectable, OnDestroy, OnInit } from '@angular/core';
+import { ShoppingListService } from './shoppingList.service';
+import { Subject } from 'rxjs/Subject';
+import { DataStorageService } from './data-storage.service';
+import { Subscription } from 'rxjs/Subscription';
+import { isUndefined } from 'util';
 
 @Injectable()
 export class RecipeService implements OnInit, OnDestroy {
@@ -53,18 +54,18 @@ export class RecipeService implements OnInit, OnDestroy {
     return this.dataService.storeAddionalRecipe(recipe);
   }
 
-  updateRecipe(index: number, newRecipe: Recipe) {
+  updateRecipe(recipeId: string, index: number, newRecipe: Recipe) {
     this.recipes[index] = newRecipe;
     this.recipeChanged.next(this.getRecipes());
   }
 
   deleteRecipe(index: number) {
-    this.recipes.splice(index, 1);
+    //this.recipes.splice(this.recipes.indexOf());
     this.recipeChanged.next(this.getRecipes());
   }
 
   constructor(private slService: ShoppingListService,
-              private dataService: DataStorageService) {
+    private dataService: DataStorageService) {
   }
 
   ngOnInit() {

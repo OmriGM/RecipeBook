@@ -32,8 +32,8 @@ app.use(function (req, res, next) {
     next();
 });
 
-app.use('/storeslist', storeRoutes);
 app.use('/recipeslist',recipeRoutes);
+app.use('/storeslist', storeRoutes);
 app.use('/', appRoutes);
 
 // catch 404 and forward to error handler

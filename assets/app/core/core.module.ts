@@ -7,6 +7,7 @@ import {DataStorageService} from '../shared/data-storage.service';
 import {RecipeService} from '../shared/recipe.service';
 import {ShoppingListService} from '../shared/shoppingList.service';
 import {FooterComponent} from "./footer/footer.component";
+import { Recipe2Service } from '../shared/recipe2.service';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,6 @@ import {FooterComponent} from "./footer/footer.component";
     HeaderComponent,
     FooterComponent
   ],
-  providers: [ShoppingListService, RecipeService, DataStorageService]
+  providers: [ShoppingListService, RecipeService, DataStorageService,Recipe2Service]
 })
 export class CoreModule {}

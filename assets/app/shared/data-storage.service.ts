@@ -1,4 +1,3 @@
-import { Recipe } from './../recipes/recipe.model';
 import { Injectable } from '@angular/core';
 import { Recipe } from '../recipes/recipe.model';
 import { Http } from '@angular/http';
@@ -44,20 +43,20 @@ export class DataStorageService {
 
   getAllRecipes() {
     // const token = this.authService.getToken();
-    // let recipes;
+    let recipes;
     // if (!isUndefined(token)) {
 
-    // recipes = this.http.get('https://udemy-ng-http-e8223.firebaseio.com/recipes.json?auth=' + token, ).map(
-    //   (response) => {
-    //     const data = response.json();
-    //     const recipesArr = [];
-    //     for (const r in data) {
-    //       recipesArr.push(data[r]);
-    //     }
-    //     return recipesArr;
-    //   });
-    // }
-    // return recipes;
+    recipes = this.http.get('http://localhost:3000/recipeslist').map(
+      (response) => {
+        const data = response.json();
+        const recipesArr = [];
+        for (const r in data) {
+          recipesArr.push(data[r]);
+        }
+        return recipesArr;
+      });
+    //}
+    return recipes;
   }
 
 }
