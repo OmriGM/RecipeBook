@@ -4,6 +4,7 @@ import { ActivatedRoute, NavigationEnd, Params, Router } from '@angular/router';
 import { RecipeService } from '../../shared/recipe.service';
 import { Recipe2Service } from '../../shared/recipe2.service';
 import { Recipe } from '../recipe.model';
+import {Ingredient} from "../../shared/ingredient.model";
 
 
 @Component({
@@ -13,7 +14,7 @@ import { Recipe } from '../recipe.model';
 })
 export class RecipeDetailComponent implements OnInit {
   id: number;
-  recipe: Recipe;
+  recipe = new Recipe('','', '','', [new Ingredient('a', 2)], '');
   constructor(private rcipeService: RecipeService,
     private recipeService2: Recipe2Service,
     private route: ActivatedRoute,
