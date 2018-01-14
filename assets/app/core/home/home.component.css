@@ -24,6 +24,9 @@ body {
     }
 }
 
+
+
+
 .on-top {
     position: relative;
 }
@@ -52,7 +55,7 @@ video {
 }
 
 
-aside {
+.flash-news {
     display: block;
     height: 700px;
     width: 220px;
@@ -70,11 +73,44 @@ h2 {
 
 @font-face {
     font-family: myFont;
-    src: url('/assets/fonts/webfonts/ostrich-sans-dashed.woff');
+    font-style: normal;
+    font-weight: 400;
+    src: local('Rancho Regular'), local('Rancho-Regular'), url(https://fonts.gstatic.com/s/rancho/v8/S-YcqhLwgYWxIA-a7eDp2g.woff2) format('woff2');
+}
 
-    src: url('/assets/fonts/webfonts/ostrich-sans-black.eot'); /* IE9 Compat Modes */
-    src: url('/assets/fonts/webfonts/ostrich-sans-black.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-    url('/assets/fonts/webfonts/ostrich-sans-black.svg#Durant-Bold') format('svg'), /* Legacy iOS */
-    url('/assets/fonts/webfonts/ostrich-sans-black.ttf')  format('truetype'), /* Safari, Android, iOS */
-    url('/assets/fonts/webfonts/ostrich-sans-black.woff') format('woff');
+
+@media (max-height: 880px) {
+    .center-box {
+        height: 450px;
+    }
+    .flash-news {
+        height: 650px;
+    }
+}
+
+@media (max-height: 830px) {
+    .center-box {
+        height: 400px;
+    }
+    .flash-news {
+        height: 600px;
+    }
+}
+
+@media (max-height: 780px) {
+    .center-box {
+        height: 350px;
+    }
+    .flash-news {
+        height: 550px;
+    }
+}
+
+@media (max-height: 730px) {
+    .center-box {
+        height: 300px;
+    }
+    .flash-news {
+        height: 500px;
+    }
 }
