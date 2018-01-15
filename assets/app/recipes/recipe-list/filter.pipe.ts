@@ -8,7 +8,7 @@ import {Recipe} from "../recipe.model";
 })
 export class FilterPipe implements PipeTransform{
 
-    transform(value: Recipe[],filterString, propName: string) {
+    transform(value: Recipe[],filterString) {
         if (filterString === '') {
             return value;
         }

@@ -11,15 +11,9 @@
   </div>
   <div class="col-md-4">
     <div class="btn-group" data-toggle="buttons">
-      <label class="btn btn-primary">
-        <input type="checkbox" autocomplete="off"> Meat
-      </label>
-      <label class="btn btn-primary">
-        <input type="checkbox" autocomplete="off"> Milk
-      </label>
-      <label class="btn btn-primary">
-        <input type="checkbox" autocomplete="off"> Vegi
-      </label>
+      <label><input type="checkbox" autocomplete="off" (change)="meat = !meat"> Meat</label>
+      <label><input type="checkbox" autocomplete="off" (change)="vegan = !vegan"> Vegan</label>
+      <label><input type="checkbox" autocomplete="off" (change)="vegetartian = !vegetartian"> Vegetartian</label>
     </div>
   </div>
   <div class="col-md-4">
@@ -27,18 +21,17 @@
       <label>Max Ing: </label>
       <input
               type="number"
-              class="form-control number-input">
+              class="form-control number-input"
+              min="0"
+              [(ngModel)]="count">
     </div>
   </div>
 </div>
 <div class="row">
   <div class="col-xs-12">
-    <app-recipe-item *ngFor="let recipeEl of recipes | filter:searchFilter; let i = index"
+    <app-recipe-item *ngFor="let recipeEl of recipes | filter:searchFilter | checkFlter:meat:vegan:vegetartian | ingredientFilter:count; let i = index"
                      [recipe]="recipeEl"
                      [index]="i"
     ></app-recipe-item>
   </div>
 </div>
-
-
-

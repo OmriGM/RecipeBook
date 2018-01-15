@@ -17,11 +17,22 @@ export class RecipeListComponent implements OnInit, OnDestroy {
     subscription: Subscription;
   searchFilter = '';
   recipes: Recipe[];
+  meat: Boolean = true;
+  vegan: Boolean = true;
+  vegetartian: Boolean = true;
+  count: number;
   constructor(private recipeService: RecipeService,
     private recipeService2: Recipe2Service,
     private router: Router,
     private route: ActivatedRoute
   ) { }
+
+
+  toggle(p: Boolean) {
+    console.log(this.vegan);
+    p = !p;
+    console.log(this.vegan);
+  }
 
   ngOnInit() {
     this.subscription = this.recipeService2.getRecipeList().subscribe(

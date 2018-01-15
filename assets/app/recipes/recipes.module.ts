@@ -11,6 +11,8 @@ import {RecipeEditComponent} from './recipe-edit/recipe-edit.component';
 import {RecipesRoutingModule} from './recipes-routing.module';
 import {SharedModule} from '../shared/shared.module';
 import {FilterPipe} from "./recipe-list/filter.pipe";
+import {CheckFilterPipe} from "./recipe-list/check-filter.pipe";
+import {IngredientsFilterPipe} from "./recipe-list/ingredients-filter.pipe";
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import {FilterPipe} from "./recipe-list/filter.pipe";
     RecipeItemComponent,
     RecipeStartComponent,
     RecipeEditComponent,
-    FilterPipe
+    FilterPipe,
+    CheckFilterPipe,
+    IngredientsFilterPipe
   ],
   imports: [
     CommonModule,

@@ -1,8 +1,9 @@
 import { Recipe2Service } from '../../shared/recipe2.service';
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { RecipeService } from '../../shared/recipe.service';
+import {Subscription} from "rxjs/Subscription";
 
 
 @Component({
@@ -10,10 +11,13 @@ import { RecipeService } from '../../shared/recipe.service';
   templateUrl: './recipe-edit.component.html',
   styleUrls: ['./recipe-edit.component.css']
 })
-export class RecipeEditComponent implements OnInit {
-  id: number;
+export class RecipeEditComponent implements OnInit, OnDestroy {
+
+
+    id: number;
   editMode = false;
   recipeForm: FormGroup;
+  routeSubscription = new Subscription();
 
   constructor(private route: ActivatedRoute,
     private recipeService: RecipeService,
@@ -21,13 +25,16 @@ export class RecipeEditComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit() {
-    this.route.params.subscribe(
+    this.routeSubscription = this.route.params.subscribe(
       (params: Params) => {
         this.id = +params['id'];
         this.editMode = params['id'] != null;
         this.initForm();
       }
     );
+  }
+    ngOnDestroy(): void {
+        this.routeSubscription.unsubscribe();
   }
 
   initForm() {
@@ -42,7 +49,7 @@ export class RecipeEditComponent implements OnInit {
       recipeName = recipe.name;
       recipeCatagory=recipe.catagory;
       recipeImagePath = recipe.imagePath;
-      recipeDescription = recipe.description;
+      recipeDescription = recipe.desc;
       if (recipe['ingredients']) {
         for (const ingredient of recipe.ingredients) {
           recipeIngredients.push(new FormGroup({
