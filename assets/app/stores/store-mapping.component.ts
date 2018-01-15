@@ -4,6 +4,8 @@ import { FormControl } from '@angular/forms';
 import { } from 'googlemaps';
 import { MapsAPILoader } from '@agm/core';
 import { Store } from './store.model';
+import * as geolib from 'geolib';
+import { Output } from '@angular/core';
 
 
 @Component({
@@ -17,15 +19,18 @@ import { Store } from './store.model';
 
 })
 export class StoreMappingComponent implements OnInit {
-
+    public bestStore: string;
     public latitude: number;
     public longitude: number;
     public searchControl: FormControl;
     public zoom: number;
     markers: marker[] = [];
+    stores:Store[]=[];
+    currStore:Store;
 
     @ViewChild("search")
     public searchElementRef: ElementRef;
+    min: number;
 
     constructor(
         private mapsAPILoader: MapsAPILoader,
@@ -44,10 +49,13 @@ export class StoreMappingComponent implements OnInit {
         //create search FormControl
         this.searchControl = new FormControl();
 
+        
+        this.initMarkers();
         //set current position
         this.setCurrentPosition();
 
-        this.initMarkers();
+
+
 
         //load Places Autocomplete
         this.mapsAPILoader.load().then(() => {
@@ -68,6 +76,7 @@ export class StoreMappingComponent implements OnInit {
                     this.latitude = place.geometry.location.lat();
                     this.longitude = place.geometry.location.lng();
                     this.zoom = 12;
+                    this.initDistanceses(this.stores);
                 });
             });
         });
@@ -83,17 +92,38 @@ export class StoreMappingComponent implements OnInit {
         }
     }
 
+    getClosestStoreName(stores:Store[]) {
+        this.min=stores[0].distance;
+        for (var i in stores) {
+            if (stores[i].distance < this.min) {
+                this.bestStore = stores[i].name;
+                this.min = stores[i].distance;
+            }
+        }        
+        this.storesService.bestStore=this.bestStore;
+    }
+    
     initMarkers() {
         this.storesService.getStores().subscribe(
             (stores: Store[]) => {
-                for (var store in stores) {
-                    console.log("lat:" + stores[store].lat);
-                    this.markers.push({ lat: stores[store].lon, lng: stores[store].lat, name: stores[store].name });
-                }
+                for (var i in stores) {
+                    this.markers.push({ lat: stores[i].lon, lng: stores[i].lat, name: stores[i].name });    
+                    this.currStore=new Store(stores[i].name,stores[i].city,stores[i].lat,stores[i].lon);
+                    this.stores.push(this.currStore);  
+                }                
             }
         )
     }
-
+    initDistanceses(stores:Store[]){
+        for (var i in stores) {
+            stores[i].distance = geolib.getDistance(
+                { latitude: this.longitude, longitude: this.latitude },
+                { latitude: stores[i].lat, longitude: stores[i].lon });
+            //stores[i].distance = stores[i].distance / 1000;
+        }
+        this.stores=stores;
+        this.getClosestStoreName(this.stores);
+    }
 }
 
 interface marker {

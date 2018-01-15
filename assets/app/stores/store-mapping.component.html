@@ -1,15 +1,19 @@
-<div class="container col-md-12">
+<div class="container col-md-8">
     <div class="form-group">
         <input placeholder="search for location" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control"
             #search [formControl]="searchControl">
     </div>
     <agm-map [latitude]="latitude" [longitude]="longitude" [scrollwheel]="true" [zoom]="zoom">
         <agm-marker *ngFor="let m of markers; let i = index" [latitude]="m.lat" [longitude]="m.lng">
-            <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
             <agm-info-window>
                 <strong>{{m.name}}</strong>
             </agm-info-window>
-
         </agm-marker>
+        <agm-marker [latitude]="latitude" [longitude]="longitude" id="marker"></agm-marker>
     </agm-map>
+</div>
+<div class="col-md-4">
+        <h1>The Colsest Store to Your Location is:</h1>
+        <br>
+        <h1>{{bestStore}}</h1>
 </div>

@@ -8,7 +8,9 @@ import {StoreGroup} from "./storeGroupBy.model";
 @Injectable()
 export class StoresService {
     stores: Store[] = [];
+    public bestStore:string;
     constructor(public http: Http) { }
+
 
     getStores() {
         return this.http.get('http://localhost:3000/storeslist')
