@@ -7,7 +7,7 @@
 <hr>
 <div class="row search">
   <div class="col-md-4">
-    <input type="text" placeholder="Search" class="form-control">
+    <input type="text" placeholder="Search" class="form-control"  [(ngModel)]="searchFilter">
   </div>
   <div class="col-md-4">
     <div class="btn-group" data-toggle="buttons">
@@ -33,7 +33,7 @@
 </div>
 <div class="row">
   <div class="col-xs-12">
-    <app-recipe-item *ngFor="let recipeEl of recipes; let i = index"
+    <app-recipe-item *ngFor="let recipeEl of recipes | filter:searchFilter; let i = index"
                      [recipe]="recipeEl"
                      [index]="i"
     ></app-recipe-item>

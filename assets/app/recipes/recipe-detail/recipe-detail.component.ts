@@ -14,32 +14,19 @@ import {Ingredient} from "../../shared/ingredient.model";
 })
 export class RecipeDetailComponent implements OnInit {
   id: number;
-  recipe = new Recipe('','', '','', [new Ingredient('a', 2)], '');
+  recipe: Recipe;
   constructor(private rcipeService: RecipeService,
     private recipeService2: Recipe2Service,
     private route: ActivatedRoute,
     private router: Router
-  ) {
-    this.router.routeReuseStrategy.shouldReuseRoute = function(){
-      return false;
-   }
-
-   this.router.events.subscribe((evt) => {
-      if (evt instanceof NavigationEnd) {
-         // trick the Router into believing it's last link wasn't previously loaded
-         this.router.navigated = false;
-         // if you need to scroll back to top, here is the right place
-         window.scrollTo(0, 0);
-      }
-  });
-  }
+  )
+  {}
 
   ngOnInit() {
     this.route.params.subscribe(
       (params: Params) => {
         this.id = +params['id'];
         this.recipe = this.recipeService2.getRecipe(this.id);
-        console.log(this.recipe.desc);
       }
     );
   }
@@ -56,7 +43,7 @@ export class RecipeDetailComponent implements OnInit {
     const recipeID=this.recipeService2.recipeList[this.id].name;
     this.recipeService2.deleteRecipe(recipeID,this.id).subscribe();
     //this.router.navigate(['../'], { relativeTo: this.route });
-    this.router.navigate(['recipes']);
+    this.router.navigate(['/recipes']);
   }
 
 }

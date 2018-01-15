@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 
 import { Recipe } from '../recipe.model';
 import { RecipeService } from '../../shared/recipe.service';
@@ -11,9 +11,11 @@ import { Recipe2Service } from '../../shared/recipe2.service';
   templateUrl: './recipe-list.component.html',
   styleUrls: ['./recipe-list.component.css']
 })
-export class RecipeListComponent implements OnInit {
+export class RecipeListComponent implements OnInit, OnDestroy {
 
-  subscription: Subscription;
+
+    subscription: Subscription;
+  searchFilter = '';
   recipes: Recipe[];
   constructor(private recipeService: RecipeService,
     private recipeService2: Recipe2Service,
@@ -22,12 +24,16 @@ export class RecipeListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.recipeService2.getRecipeList().subscribe(
+    this.subscription = this.recipeService2.getRecipeList().subscribe(
       (recipes: Recipe[]) => {
         this.recipes = recipes;
       }
     )
   }
+
+    ngOnDestroy(): void {
+        this.subscription.unsubscribe();
+    }
 
   onNewRecipeClick() {
     this.router.navigate(['new'], { relativeTo: this.route });
