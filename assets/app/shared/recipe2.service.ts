@@ -75,8 +75,7 @@ export class Recipe2Service {
     }
 
 
-    async getRecipe(index: number) {
-            await this.getRecipeList();
+    getRecipe(index: number) {
             return this.recipeList[index]; // "Slice" is a copy of the array.
 
     }

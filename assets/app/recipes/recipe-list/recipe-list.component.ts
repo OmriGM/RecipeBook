@@ -17,9 +17,10 @@ export class RecipeListComponent implements OnInit, OnDestroy {
     subscription: Subscription;
   searchFilter = '';
   recipes: Recipe[];
-    meat: Boolean = true;
-    vegan: Boolean = true;
-    vegetartian: Boolean = true;
+  meat: Boolean = true;
+  vegan: Boolean = true;
+  vegetartian: Boolean = true;
+  count: number;
   constructor(private recipeService: RecipeService,
     private recipeService2: Recipe2Service,
     private router: Router,
