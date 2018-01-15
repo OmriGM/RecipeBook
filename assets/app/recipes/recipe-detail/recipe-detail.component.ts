@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Params, Router } from '@angular/router';
 
 import { RecipeService } from '../../shared/recipe.service';
@@ -13,10 +13,13 @@ import {Subscription} from "rxjs/Subscription";
   templateUrl: './recipe-detail.component.html',
   styleUrls: ['./recipe-detail.component.css']
 })
-export class RecipeDetailComponent implements OnInit {
-  id: number;
+export class RecipeDetailComponent implements OnInit, OnDestroy {
+
+
+    id: number;
   recipe: Recipe;
   listSubscription = new Subscription();
+  routingSubscription = new Subscription();
   constructor(private rcipeService: RecipeService,
     public recipeService2: Recipe2Service,
     private route: ActivatedRoute,
@@ -28,12 +31,22 @@ export class RecipeDetailComponent implements OnInit {
     this.route.params.subscribe(
       (params: Params) => {
         this.id = +params['id'];
-        this.listSubscription = this.recipeService2.recipeListChanged.subscribe((recipeList: Recipe[]) => {
-            this.recipe = recipeList[this.id];
-        });
+        if (this.recipeService2.recipeList.length >=1) {
+          this.recipe = this.recipeService2.recipeList[this.id];
+        } else {
+            this.listSubscription = this.recipeService2.recipeListChanged.subscribe((recipeList: Recipe[]) => {
+                this.recipe = recipeList[this.id];
+            });
+        }
+
       }
     );
   }
+
+    ngOnDestroy(): void {
+        this.listSubscription.unsubscribe();
+        this.routingSubscription.unsubscribe();
+    }
 
   onAddToSL(recipe: Recipe) {
     this.recipeService2.addIngredientsToShoppingList(recipe);
