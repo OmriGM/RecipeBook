@@ -8,11 +8,12 @@ import {RecipeDetailComponent} from './recipe-detail/recipe-detail.component';
 
 
 
+
 const recipesRoutes: Routes = [
   { path: '', component: RecipesComponent, children: [
     {path: '', component: RecipeStartComponent},
     {path: 'new', component: RecipeEditComponent },
-    {path: ':id', component: RecipeDetailComponent},
+    {path: ':id' , component: RecipeDetailComponent},
     {path: ':id/edit', component: RecipeEditComponent }
   ]},
 ];

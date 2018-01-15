@@ -27,7 +27,7 @@ import {FilterPipe} from "./recipe-list/filter.pipe";
     ReactiveFormsModule,
     RecipesRoutingModule,
     SharedModule,
-      FormsModule
+    FormsModule,
   ]
 })
 export class RecipesModule {

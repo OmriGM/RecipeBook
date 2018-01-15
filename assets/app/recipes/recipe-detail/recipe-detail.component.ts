@@ -16,7 +16,7 @@ export class RecipeDetailComponent implements OnInit {
   id: number;
   recipe: Recipe;
   constructor(private rcipeService: RecipeService,
-    private recipeService2: Recipe2Service,
+    public recipeService2: Recipe2Service,
     private route: ActivatedRoute,
     private router: Router
   )
@@ -40,9 +40,9 @@ export class RecipeDetailComponent implements OnInit {
   }
 
   onDeleteRecipe() {
+
     const recipeID=this.recipeService2.recipeList[this.id].name;
     this.recipeService2.deleteRecipe(recipeID,this.id).subscribe();
-    //this.router.navigate(['../'], { relativeTo: this.route });
     this.router.navigate(['/recipes']);
   }
 

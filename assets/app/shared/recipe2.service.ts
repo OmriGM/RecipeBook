@@ -1,19 +1,19 @@
 import { Recipe } from './../recipes/recipe.model';
 import { Injectable } from '@angular/core';
-import { Http, Headers, Response } from '@angular/http';
+import { Http, Response } from '@angular/http';
 import { ShoppingListService } from './shoppingList.service';
 
 import 'rxjs/Rx';
+import {Subject} from "rxjs/Subject";
 
 @Injectable()
 export class Recipe2Service {
     recipeList: Recipe[] = [];
-
     constructor(private slService: ShoppingListService,
         public http: Http) { }
 
 
-    getRecipeList() {
+     getRecipeList() {
         return this.http.get('http://localhost:3000/recipeslist')
             .map(
             (respone: Response) => {
@@ -26,6 +26,13 @@ export class Recipe2Service {
                 return transformedRecipes;
             })
     }
+
+    async isListReady() {
+        return new Promise(((resolve, reject) => {
+            setTimeout(()=>resolve('test'),1000);
+        }));
+    }
+
 
     getGroupByCatagory() {
         return this.http.get('http://localhost:3000/recipeslist/group')
@@ -60,7 +67,7 @@ export class Recipe2Service {
     }
 
     deleteRecipe(recipeId: string, index: number) {
-        this.recipeList = this.recipeList.splice(index, 1);
+        this.recipeList.splice(index, 1);
         return this.http.delete('http://localhost:3000/recipeslist/' + recipeId);
 
     }
