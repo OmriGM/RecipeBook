@@ -49,7 +49,7 @@ export class RecipeEditComponent implements OnInit, OnDestroy {
       recipeName = recipe.name;
       recipeCatagory=recipe.catagory;
       recipeImagePath = recipe.imagePath;
-      recipeDescription = recipe.description;
+      recipeDescription = recipe.desc;
       if (recipe['ingredients']) {
         for (const ingredient of recipe.ingredients) {
           recipeIngredients.push(new FormGroup({
