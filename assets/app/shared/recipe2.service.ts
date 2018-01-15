@@ -9,6 +9,7 @@ import {Subject} from "rxjs/Subject";
 @Injectable()
 export class Recipe2Service {
     recipeList: Recipe[] = [];
+    recipeListChanged = new Subject();
     constructor(private slService: ShoppingListService,
         public http: Http) { }
 
@@ -23,6 +24,7 @@ export class Recipe2Service {
                     transformedRecipes.push(new Recipe(recipe._id, recipe.name, recipe.description, recipe.imagePath, recipe.ingredients, recipe.catagory))
                 }
                 this.recipeList = transformedRecipes;
+                this.recipeListChanged.next(this.recipeList.slice());
                 return transformedRecipes;
             })
     }
@@ -73,7 +75,8 @@ export class Recipe2Service {
     }
 
 
-    getRecipe(index: number) {
+    async getRecipe(index: number) {
+            await this.getRecipeList();
             return this.recipeList[index]; // "Slice" is a copy of the array.
 
     }

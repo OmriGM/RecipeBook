@@ -5,6 +5,7 @@ import { RecipeService } from '../../shared/recipe.service';
 import { Recipe2Service } from '../../shared/recipe2.service';
 import { Recipe } from '../recipe.model';
 import {Ingredient} from "../../shared/ingredient.model";
+import {Subscription} from "rxjs/Subscription";
 
 
 @Component({
@@ -15,6 +16,7 @@ import {Ingredient} from "../../shared/ingredient.model";
 export class RecipeDetailComponent implements OnInit {
   id: number;
   recipe: Recipe;
+  listSubscription = new Subscription();
   constructor(private rcipeService: RecipeService,
     public recipeService2: Recipe2Service,
     private route: ActivatedRoute,
@@ -26,7 +28,9 @@ export class RecipeDetailComponent implements OnInit {
     this.route.params.subscribe(
       (params: Params) => {
         this.id = +params['id'];
-        this.recipe = this.recipeService2.getRecipe(this.id);
+        this.listSubscription = this.recipeService2.recipeListChanged.subscribe((recipeList: Recipe[]) => {
+            this.recipe = recipeList[this.id];
+        });
       }
     );
   }

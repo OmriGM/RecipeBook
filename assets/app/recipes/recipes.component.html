@@ -3,7 +3,7 @@
     <app-recipe-list></app-recipe-list>
   </div>
   <div class="col-md-6">
-          <router-outlet *ngIf="recipeService.recipeList.length>=1"></router-outlet>
+          <router-outlet></router-outlet>
     <ng-template #infoText><p>Please select a Recipe!</p></ng-template>
   </div>
 </div>
