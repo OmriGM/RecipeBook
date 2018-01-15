@@ -79,7 +79,6 @@ export class RecipeEditComponent implements OnInit, OnDestroy {
         }
 
     } else {
-      console.log("new");
       this.initFormInputs();
     }
 
