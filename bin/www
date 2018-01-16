@@ -28,16 +28,15 @@ var server = http.createServer(app);
  */
 
 
- // //Web Socket listener and creation:
-var io=require('socket.io')(server);
-io.on("connection",function(socket){
-  socket.on('message',function(message){
-    // io.sockets.array.forEach(element => {
-    //   element.emit('message',{msg:"Recipe Adeed to MongoDB"});
-    // });
-    console.log("message received from client!= "+message);
-    socket.emit('message',{msg:message});
-  })
+// //Web Socket listener and creation:
+io = require('socket.io').listen(server);
+io.on('connection',function(socket){
+    socket.on('message',function(message){
+        socket.join('message');
+        console.log("message received from client: "+message);
+        socket.emit('message',{msg:message});
+        io.emit('message',{msg:message});
+    })
 });
 
 
