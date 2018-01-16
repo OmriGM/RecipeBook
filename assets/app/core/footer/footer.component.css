@@ -2,5 +2,9 @@
     height: 120px;
     width: 100%;
     background-color: #222222;
+    color:white;
+}
+#names{
+    align-content: center;
 }
 

@@ -41,10 +41,6 @@
     "twit": "^2.2.9",
     "websocket": "^1.0.25",
     "ws": "^4.0.0",
-<<<<<<< HEAD
-=======
-    "twit": "^2.2.9",
->>>>>>> 438b51daed6ff1c12ce9a22d3acbfe853c6ce63f
     "zone.js": "^0.8.5"
   },
   "devDependencies": {
