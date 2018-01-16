@@ -8,17 +8,12 @@ import { WebSocketService } from '../../shared/webSocket.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-<<<<<<< HEAD
 export class HomeComponent implements OnInit, OnDestroy {
   lastRecipeName: string;
   recipeNameSubscription: Subscription;
 
   constructor(private webSocketService: WebSocketService) { }
-=======
-export class HomeComponent implements OnInit {
-  socket: WebSocket;
-  constructor() { }
->>>>>>> e8f1eb2db838eb1a6090968b441b96b5ee11a26d
+
 
   ngOnInit() {
     //socket.io subscribe to a message received from server:

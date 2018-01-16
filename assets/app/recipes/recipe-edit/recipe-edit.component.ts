@@ -3,11 +3,8 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import {Subscription} from "rxjs/Subscription";
-<<<<<<< HEAD
 import { WebSocketService } from '../../shared/webSocket.service';
-=======
 import {Recipe} from "../recipe.model";
->>>>>>> e8f1eb2db838eb1a6090968b441b96b5ee11a26d
 
 
 @Component({
