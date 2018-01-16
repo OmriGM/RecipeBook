@@ -3,6 +3,15 @@ var router = express.Router();
 
 var Recipe = require("../models/recipe");
 
+var Twit = require('twit')
+
+var T = new Twit({
+    consumer_key:         'lSl9hfWRbFJ1n0UYh9UDuU4tS',
+    consumer_secret:      'RBObPxHE7tIyCIJZtycsA56EkuOaSlG2t6rC9HJ1NvBr6WkIKV',
+    access_token:         '953253386434043905-Xh2ebpINPQPj2qTFRAfMrYKl6nJfmHK',
+    access_token_secret:  'J5KJkXswdv1vvGRIpkSYO52FnAbpUb6cNCgdGuCma3SkA',
+    timeout_ms:           60*1000,  // optional HTTP request timeout to apply to all requests.
+})
 
 
 //Add recipe
@@ -26,7 +35,9 @@ router.post('/', function (req, res, next) {
             obj: result
         });
     });
-
+    T.post('statuses/update', { status: 'Hello Everyone. A new recipe was added to our site! Recipe name: '+recipe['name'] +', come and check it out!' }, function(err, data, response) {
+        console.log(data)
+    });
 });
 
 //get all recipes
