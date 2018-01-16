@@ -1,6 +1,9 @@
 import {NgModule} from '@angular/core';
 import {DropdownDirective} from './dropdown.directive';
 import {CommonModule} from '@angular/common';
+import { NgIoModule, NgIoConfig } from 'ng-io';
+
+const config: NgIoConfig = { url: 'http://localhost:3000', options: {} };
 
 
 
@@ -8,9 +11,12 @@ import {CommonModule} from '@angular/common';
   declarations: [
     DropdownDirective
   ],
+  imports:[
+    NgIoModule.forRoot(config)
+  ],
   exports: [
     CommonModule,
-    DropdownDirective
+    DropdownDirective,
   ]
 })
 export class SharedModule {

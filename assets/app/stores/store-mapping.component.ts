@@ -12,7 +12,7 @@ import { Output } from '@angular/core';
     selector: 'app-store-mapping',
     styles: [`
     agm-map {
-      height: 300px;
+      height: 500px;
     }
   `],
     templateUrl: './store-mapping.component.html',

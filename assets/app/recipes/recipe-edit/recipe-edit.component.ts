@@ -2,8 +2,8 @@ import { Recipe2Service } from '../../shared/recipe2.service';
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
-import { RecipeService } from '../../shared/recipe.service';
 import {Subscription} from "rxjs/Subscription";
+import { WebSocketService } from '../../shared/webSocket.service';
 
 
 @Component({
@@ -14,15 +14,17 @@ import {Subscription} from "rxjs/Subscription";
 export class RecipeEditComponent implements OnInit, OnDestroy {
 
 
-    id: number;
+  id: number;
   editMode = false;
   recipeForm: FormGroup;
   routeSubscription = new Subscription();
 
   constructor(private route: ActivatedRoute,
-    private recipeService: RecipeService,
     private recipeService2: Recipe2Service,
-    private router: Router) { }
+    private webSocketService:WebSocketService,
+    private router: Router) { 
+
+    }
 
   ngOnInit() {
     this.routeSubscription = this.route.params.subscribe(
@@ -32,6 +34,8 @@ export class RecipeEditComponent implements OnInit, OnDestroy {
         this.initForm();
       }
     );
+
+
   }
     ngOnDestroy(): void {
         this.routeSubscription.unsubscribe();
@@ -75,6 +79,8 @@ export class RecipeEditComponent implements OnInit, OnDestroy {
     } else {
       this.recipeService2.addRecipe(this.recipeForm.value).subscribe();
     }
+    const recipeName=this.recipeForm.value.name;
+    this.webSocketService.sendMessage(recipeName);
     this.resetEdit()
   }
 
@@ -95,8 +101,6 @@ export class RecipeEditComponent implements OnInit, OnDestroy {
   }
 
   onDeleteRecipe() {
-    //const recipeID=this.recipeService2.recipeList[this.id].name;
-    //this.recipeService2.deleteRecipe(recipeID,this.id).subscribe();
     this.resetEdit();
   }
 

@@ -1,7 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 
 import { Recipe } from '../recipe.model';
-import { RecipeService } from '../../shared/recipe.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 import { Recipe2Service } from '../../shared/recipe2.service';
@@ -21,7 +20,7 @@ export class RecipeListComponent implements OnInit, OnDestroy {
   vegan: Boolean = true;
   vegetartian: Boolean = true;
   count: number;
-  constructor(private recipeService: RecipeService,
+  constructor(
     private recipeService2: Recipe2Service,
     private router: Router,
     private route: ActivatedRoute

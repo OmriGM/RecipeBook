@@ -1,4 +1,9 @@
-<div class="container col-md-8">
+<div class="col-md-5">
+        <h1>The Closest Store to Your Location is:</h1>
+        <br>
+        <h1>{{bestStore}}</h1>
+</div>
+<div class="container col-md-7">
     <div class="form-group">
         <input placeholder="search for location" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control"
             #search [formControl]="searchControl">
@@ -11,9 +16,4 @@
         </agm-marker>
         <agm-marker [latitude]="latitude" [longitude]="longitude" id="marker"></agm-marker>
     </agm-map>
-</div>
-<div class="col-md-4">
-        <h1>The Colsest Store to Your Location is:</h1>
-        <br>
-        <h1>{{bestStore}}</h1>
 </div>

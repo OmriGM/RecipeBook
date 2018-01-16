@@ -1,7 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Params, Router } from '@angular/router';
 
-import { RecipeService } from '../../shared/recipe.service';
 import { Recipe2Service } from '../../shared/recipe2.service';
 import { Recipe } from '../recipe.model';
 import {Ingredient} from "../../shared/ingredient.model";
@@ -20,7 +19,7 @@ export class RecipeDetailComponent implements OnInit, OnDestroy {
   recipe: Recipe;
   listSubscription = new Subscription();
   routingSubscription = new Subscription();
-  constructor(private rcipeService: RecipeService,
+  constructor(
     public recipeService2: Recipe2Service,
     private route: ActivatedRoute,
     private router: Router
