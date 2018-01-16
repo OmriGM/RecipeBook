@@ -16,7 +16,6 @@ export class HomeComponent implements OnInit, OnDestroy {
 
 
   ngOnInit() {
-    //socket.io subscribe to a message received from server:
     this.lastRecipeName = this.webSocketService.lastRecipe;
     this.recipeNameSubscription = this.webSocketService.lastRecipeName.subscribe((msg) => {
       this.lastRecipeName = msg;

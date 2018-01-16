@@ -70,8 +70,6 @@ export class RecipeEditComponent implements OnInit, OnDestroy {
   initForm() {
 
     if (this.editMode) {
-        console.log('new recipe?');
-
         if (this.recipeService2.recipeList.length >=1) {
             this.recipe = this.recipeService2.recipeList[this.id];
             this.setForm();

@@ -114,3 +114,13 @@ h2 {
         height: 500px;
     }
 }
+
+.animate {
+    padding-top: 0px;
+    transition: 0.3s;
+}
+
+.flash-news:hover > .animate {
+    padding-top: 100px;
+    transition: 0.3s;
+}

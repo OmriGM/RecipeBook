@@ -23,10 +23,13 @@
     </video>
 
 <aside>
-    <div class="flash-news" >
-        <h2>
-            The Last Recipe Added is: {{lastRecipeName}}
-        </h2>        
+    <div class="flash-news">
+        <div class="animate">
+            <h2 *ngIf="lastRecipeName !== undefined">
+                The Last Recipe Added is: {{lastRecipeName}}
+            </h2>
+        </div>
+
     </div>
 
 </aside>
